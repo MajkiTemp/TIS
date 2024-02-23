@@ -51,7 +51,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *
      * @return The list of top 3 popular products.
      */
-    @Query("SELECT new hr.tis.model.PopularProduct(p.name, AVG(r.rating)) " +
+    @Query("SELECT new hr.tis.model.PopularProduct(p.name,  ROUND(AVG(r.rating), 1)) " +
             "FROM Product p " +
             "JOIN Review r ON p.id = r.product.id " +
             "GROUP BY p.name " +
