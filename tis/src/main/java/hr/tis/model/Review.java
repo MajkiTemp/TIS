@@ -1,6 +1,8 @@
 package hr.tis.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Review {
@@ -15,6 +17,10 @@ public class Review {
     private String reviewer;
 
     private String text;
+
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
+    private int rating;
 
     public Long getId() {
         return id;
@@ -51,7 +57,5 @@ public class Review {
     public void setRating(int rating) {
         this.rating = rating;
     }
-
-    private int rating;
 
 }
